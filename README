@@ -1,6 +1,9 @@
 Wade Zengel
 puzzle2
 
+This link can be followed to interact with the gearball:
+https://rawgit.com/wadezengel/gearball/master/puzzle2.html
+
 ISSUES:
 The biggest issue I ran into that I could not find a work around for was that if k > 8 for randomized moves, google chrome will crash before reaching
 a solution. I tried microsoft edge and it ran the A* Algorithm but it ran significantly slower than it did in google chrome. The graph and excel spreadsheet
