@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        Label{
+            font-size: 200%;
+        }
+
+        .Buttons1{
+            position: absolute;
+            top: 5%;
+        }
+        .Buttons2{
+            position: absolute;
+            top: 10%;
+        }
+
+        .solution{
+            position: absolute;
+            left: 150px;
+            top: 500px;
+            white-space: pre;
+        }
+        #randomizeButton {
+            position:absolute;
+            top: 350px;
+            left: 150px;
+        }
+
+        #randomizeTextBox{
+            position:absolute;
+            top: 400px;
+            left: 150px;
+        }
+    </style>
+    <script src="puzzle2script.js"></script>
+    <script src = "puzzle2gearball.js"></script>
+    <script src = "puzzle2AStar.js"></script>
+</head>
+    
+<body>
+<div>Puzzle1 GearBall</div>
+<div>Wade Zengel</div>
+<div>Enter the number of random turns you want into the textbox and then click "Randomize" to generate a ball.</div>
+<div>The buttons on the right side of the page let you directly interact with the gear ball.</div>
+<div>Turning any set will turn its lowercase set in the opposite direction.</div>
+<div>These buttons use the blue and yellow square for right and left turns for sets B and C.</div>
+<div>By clicking the solve button a solution will be displayed.</div>
+<div>It is recommended to only randomize a number of moves between 1 - 5 for time purposes. A fast computer can do up to 7 randomized moves.</div>
+<div class="solution" id= "solution"></div>
+
+    <script>
+        //Build all of the faces
+        var blockNumber = 0;
+        var yellowFace = generateFace(blockNumber, 750, 250, "yellow.png");
+        blockNumber += 9;
+        var blueFace = generateFace(blockNumber, 500, 500, "blue.png");
+        blockNumber += 9;
+        var redFace = generateFace(blockNumber, 750, 500, "red.png");
+        blockNumber += 9;
+        var greenFace = generateFace(blockNumber, 1000, 500, "green.png");
+        blockNumber += 9;
+        var orangeFace = generateFace(blockNumber, 750, 750, "orange.png");
+        blockNumber += 9;
+        var purpleFace = generateFace(blockNumber, 750, 1000, "purple.png");
+
+        //Create the Labels
+        generateLabel("labelA", "A", 765, 200);
+        generateLabel("labela", "a", 865, 200);
+        generateLabel("labelB0", "B", 700, 255);
+        generateLabel("labelb0", "b", 700, 355);
+        generateLabel("labelB1", "B", 515, 450);
+        generateLabel("labelb1", "b", 615, 450);
+        generateLabel("labelB2", "B", 1115, 450);
+        generateLabel("labelb2", "b", 1015, 450);
+        generateLabel("labelB2", "B", 715, 850);
+        generateLabel("labelb2", "b", 715, 750);
+        generateLabel("labelC0", "C", 450, 505);
+        generateLabel("labelc0", "c", 450, 605);
+        generateLabel("labelC1", "C", 700, 1105);
+        generateLabel("labelc1", "c", 700, 1005);
+
+        //Create the gears and set their initial angles
+        placeGear("purpleyellow.png", 800, 150, 0, "gear0");
+        placeGear("blueyellow.png", 675, 300, 0, "gear1");
+        placeGear("yellowgreen.png", 925, 300, 0, "gear2");
+        placeGear("yellowred.png", 800, 425, 0, "gear3");
+        placeGear("bluered.png", 675, 550, 0, "gear4");
+        placeGear("redgreen.png", 925, 550, 0, "gear5");
+        placeGear("redorange.png", 800, 675, 0, "gear6");
+        placeGear("blueorange.png", 675, 800, 0, "gear7");
+        placeGear("orangegreen.png", 925, 800, 0, "gear8");
+        placeGear("orangepurple.png", 800, 925, 0, "gear9");
+        placeGear("bluepurple.png", 675, 1050, 0, "gear10");
+        placeGear("purplegreen.png", 925, 1050, 0, "gear11");
+    </script>
+
+    <input type="text" id= "randomizeTextBox">
+    <button id="randomizeButton" onclick="randomize()">Randomize</button>
+
+    <button onclick="upTurnSetA()" class="Buttons1" style="left: 80%">Turn A Up</button>
+    <button onclick="downTurnSetA()" class="Buttons2" style="left: 80%">Turn A Down</button>
+    <button onclick="rightTurnSetB()" class="Buttons1" style="left: 85%">Turn B Right</button>
+    <button onclick="leftTurnSetB()" class="Buttons2" style="left: 85%">Turn B Left</button>
+    <button onclick="rightTurnSetC()" class="Buttons1" style="left: 90%">Turn C Right</button>
+    <button onclick="leftTurnSetC()" class="Buttons2" style="left: 90%">Turn C Left</button>
+    <button onclick="solve()">SOLVE</button>
+</body>
+</html>

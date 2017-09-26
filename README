@@ -1,0 +1,66 @@
+Wade Zengel
+puzzle2
+
+ISSUES:
+The biggest issue I ran into that I could not find a work around for was that if k > 8 for randomized moves, google chrome will crash before reaching
+a solution. I tried microsoft edge and it ran the A* Algorithm but it ran significantly slower than it did in google chrome. The graph and excel spreadsheet
+contain data for 4 < k < 9 because of this, and I am not sure the best way to work around it.
+
+DESCRIPTION OF GEARBALL CLASS:
+The gearball class (declared in puzzle2gearball.js) has 7 different values and 4 different methods. 
+
+    Values:
+
+        blocks = A string that has characters that represent a color and the order determines which block has whcih color
+
+        gears = an array of arrays where each inner array represents a gear's image, angle, and true angle
+
+        h = the heuristic value of the gearball
+
+        prevMove = an integer value which represents the previous move that was done to get to this gearball. This is helpful so the opposite
+        move is not generated
+
+        parent = the gearball object before this one
+
+        d = depth (because cost was not an issue for the f value)
+
+        f = depth + heuristic value
+
+    Methods:
+
+        loadGearball = takes the gearball object and assigns all of the blocks to the colors from the gearball object. This was done because the only way
+        the gearball can be turned is through the gui
+
+        calculateHeuristic = a function that takes the gears and blocks values and calculates the heuristic
+
+        expand = takes the gearball and gives it 5 children (unless it is the root) where the omitted child is the inverse of prevMove
+
+        isEqual = used to compare this gearball object with another
+
+HEURISTIC:
+
+Range [0, 3]
+
+    Floor[Max[((The number of blocks out of place) / 24), ((The number of gears in the wrong angle)/4)]]
+
+        (The floor of the number of blocks out of place divided by 24 or the number of gears in the wrong angle divided by 4, whichever is larger)
+
+    This is because whenever a rotation is made from a solved state it will put 24 cubes out of place, 8 gears out of place, and 4 gears in the wrong angle.
+
+    If a gear is in the wrong position that means the blocks are to so I will just count the gears in the wrong rotation.
+    If all the gears in a row are out of position it will take a maximum of 4 rotations if all of the blocks are in the right spot. 
+    
+    The range of values are: [0, 3]  
+
+    This is because there are 12 gears that can be at the wrong angle meaning the most that can return is 3 moves and the lowest is 0.
+    There are 54 blocks (9*6) but the centerblock on all sides cannot be moved. This means 48 blocks can be out of place. When you divide this by 24 the max is 2.
+
+WHAT I LEARNED:
+
+    I learned much more about A* and the importance of having a strong heuristic. I also learned that google chrome can use too much memory and quit
+    before finding a solution. I talked to the person who recommended javascript because it was what he used last year, but his puzzle had 3 possible
+    moves where the gearball has 6. This may be why he had no issues with javascript and I ran into the memory issues of google chrome.
+
+NOTES:
+
+    The graph can be found as graph.png and the data to make the graph can be found in data.xlsx.
